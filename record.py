@@ -67,9 +67,11 @@ def parse_getevent_log(raw_logs="raw_touch_log.txt"):
                     current_touch["tracking_id"] = tracking_id
             
             if re.search(x_position_pattern, line):
+                print(f"{current_touch['tracking_id']} x")
                 current_touch["x"].append(int(re.search(x_position_pattern, line).group(1), 16))
             
             if re.search(y_position_pattern, line):
+                print(f"{current_touch['tracking_id']} y")
                 current_touch["y"].append(int(re.search(y_position_pattern, line).group(1), 16))
 
             if re.search(touch_down_pattern, line):
@@ -119,8 +121,8 @@ def detect_end_process(process):
 
 def main():
         
-    with open('config.yaml', 'r') as file:
-        config = yaml.safe_load(file)
+    # with open('config.yaml', 'r') as file:
+    #     config = yaml.safe_load(file)
     
     recording_process = record_raw_touch_events()
     
